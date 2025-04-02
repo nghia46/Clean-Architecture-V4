@@ -10,12 +10,13 @@ public class Product
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
     public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
 
-    public Product(string name, decimal price, int stock)
+    public Product(string name, decimal price, int stock, string description = "")
     {
         Id = Guid.NewGuid();
         Name = name;
         Price = price;
         Stock = stock;
+        Description = description;
         CreatedAt = DateTime.UtcNow + TimeSpan.FromHours(7); // UTC+7
         UpdatedAt = DateTime.UtcNow + TimeSpan.FromHours(7);
     }

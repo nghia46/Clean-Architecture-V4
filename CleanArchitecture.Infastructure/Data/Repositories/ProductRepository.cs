@@ -7,6 +7,12 @@ namespace CleanArchitecture.Infastructure.Data.Repositories;
 
 public class ProductRepository(AppDbContext appDbContext) : IProductRepository
 {
+    public async Task Create(Product entity)
+    {
+        await appDbContext.Products.AddAsync(entity);
+        await appDbContext.SaveChangesAsync();
+    }
+
     public async Task<Product> GetByIdAsync(Guid id)
     {
         var product = await appDbContext.Products.FindAsync(id);

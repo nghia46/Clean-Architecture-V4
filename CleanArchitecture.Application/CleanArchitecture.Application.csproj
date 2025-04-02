@@ -11,12 +11,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Confluent.Kafka" Version="2.9.0" />
     <PackageReference Include="MediatR" Version="12.4.1" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="9.0.3" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.3" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Commands-Queries\Commands\" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
 
 </Project>
