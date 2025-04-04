@@ -7,9 +7,9 @@ using Microsoft.Extensions.Configuration;
 
 namespace CleanArchitecture.Application.Commands_Queries.Commands.CreateProduct;
 
-public class CreateProductCommandHandler(IConfiguration configuration, IProductRepository productRepository, IKafkaHelper<Product> kafkaHelper) : IRequestHandler<CreateProductCommand, string>
+public class CreateProductCommandHandler(IConfiguration configuration, IProductRepository productRepository, IKafkaHelper<Product> kafkaHelper) : IRequestHandler<CreateProductCommand, BaseResponse<string>>
 {
-    public async Task<string> Handle(CreateProductCommand request, CancellationToken cancellationToken)
+    public async Task<BaseResponse<string>> Handle(CreateProductCommand request, CancellationToken cancellationToken)
     {
         try
         {
@@ -25,11 +25,11 @@ public class CreateProductCommandHandler(IConfiguration configuration, IProductR
             string topicName = configuration["Kafka:Topic:Product"] ?? "undefined-topic";
             await kafkaHelper.ProduceMessageAsync(topicName, product.Id.ToString(), product);
 
-            return product.Id.ToString();
+            return BaseResponse<string>.SuccessReturn(product.Id,"Create Product successfully!");
         }
         catch (Exception e)
         {
-            return e.Message;
+            return BaseResponse<string>.InternalServerError(e.Message);
             throw;
         }
     }

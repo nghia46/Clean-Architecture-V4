@@ -1,8 +1,10 @@
+using NUlid;
+
 namespace CleanArchitecture.Domain.Entities;
 
 public class Product
 {
-    public Guid Id { get; set; }
+    public string Id { get; set; }
     public string Name { get; set; } = string.Empty;
     public string Description { get; set; } = string.Empty;
     public decimal Price { get; set; }
@@ -12,7 +14,7 @@ public class Product
 
     public Product(string name, decimal price, int stock, string description = "")
     {
-        Id = Guid.NewGuid();
+        Id = Ulid.NewUlid().ToString();
         Name = name;
         Price = price;
         Stock = stock;

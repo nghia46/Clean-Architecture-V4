@@ -16,12 +16,12 @@ public partial class AppDbContext : DbContext
 
     // Configuration the DB connection string
 
-    // protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder){
-    //     if (!optionsBuilder.IsConfigured)
-    //     {
-    //         optionsBuilder.UseNpgsql("Host=localhost; Database=CleanArcDb; Username=postgres; Password=Abcd1234");
-    //     }
-    // }
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder){
+        if (!optionsBuilder.IsConfigured)
+        {
+            optionsBuilder.UseNpgsql("Host=localhost; Database=CleanArcDb; Username=postgres; Password=Abcd1234");
+        }
+    }
 
     public virtual DbSet<Product> Products { get; set; } = null!;
 

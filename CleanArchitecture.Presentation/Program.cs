@@ -24,7 +24,7 @@ if (app.Environment.IsDevelopment())
     app.MapScalarApiReference(option =>
     {
         option.WithTitle("Scalar API Reference");
-        option.WithTheme(ScalarTheme.BluePlanet);
+        // option.WithTheme(ScalarTheme.BluePlanet);
         option.WithDefaultHttpClient(ScalarTarget.CSharp, ScalarClient.HttpClient);
     });
 }

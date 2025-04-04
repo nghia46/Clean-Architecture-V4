@@ -3,4 +3,4 @@ using MediatR;
 
 namespace CleanArchitecture.Application.Commands_Queries.Commands.CreateProduct;
 
-public record CreateProductCommand(CreateProductDto ProductDto) : IRequest<string>;
+public record CreateProductCommand(CreateProductDto ProductDto) : IRequest<BaseResponse<string>>;

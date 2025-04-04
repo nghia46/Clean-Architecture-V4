@@ -4,11 +4,19 @@ using MediatR;
 
 namespace CleanArchitecture.Application.Commands_Queries.Queries.GetsProduct;
 
-public class GetsProductQueryHandler(IProductRepository productRepository) : IRequestHandler<GetsProductQuery, IEnumerable<Product>>
+public class GetsProductQueryHandler(IProductRepository productRepository) : IRequestHandler<GetsProductQuery, BaseResponse<IEnumerable<Product>>>
 {
-    public async Task<IEnumerable<Product>> Handle(GetsProductQuery request, CancellationToken cancellationToken)
+    public async Task<BaseResponse<IEnumerable<Product>>> Handle(GetsProductQuery request, CancellationToken cancellationToken)
     {
-        var products = await productRepository.GetsAsync();
-        return products;
+        try
+        {
+            var products = await productRepository.GetsAsync();
+            return BaseResponse<IEnumerable<Product>>.SuccessReturn(products);
+        }
+        catch
+        {
+            return BaseResponse<IEnumerable<Product>>.InternalServerError();
+        }
+
     }
 }
