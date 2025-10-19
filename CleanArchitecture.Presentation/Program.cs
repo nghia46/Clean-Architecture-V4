@@ -20,6 +20,7 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
+    // Use /scaler to access Scalar API reference
     app.MapOpenApi();
     app.MapScalarApiReference(option =>
     {
